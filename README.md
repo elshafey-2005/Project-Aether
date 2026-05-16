@@ -1,16 +1,115 @@
-# projectaether
+# Project Aether
 
-A new Flutter project.
+Project Aether is a realtime multiplayer Flutter application built with Clean Architecture and Riverpod.  
+The project simulates raid battles, world boss events, and realtime player communication using Firebase.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+# Features
 
-A few resources to get you started if this is your first Flutter project:
+## World Boss Timer
+- Live countdown timer for world boss events
+- Realtime synchronization
+- Dynamic UI updates
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Raid System
+- Multiplayer raid join system
+- Maximum of 15 players per raid
+- Concurrency-safe join handling
+- Prevents duplicate or overflow joins during simultaneous requests
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Realtime Chat
+- Live player messaging
+- Realtime updates using Firebase
+- Optimized message fetching
+
+---
+
+# Architecture
+
+The project follows:
+
+- Clean Architecture
+- Riverpod State Management
+- Service Layer Pattern
+- Feature-based folder structure
+
+---
+
+# Technologies Used
+
+- Flutter
+- Dart
+- Firebase Firestore
+- Riverpod
+
+---
+
+# Concurrency Strategy
+
+The raid system uses atomic transaction logic to ensure that no more than 15 players can join the same raid simultaneously.
+
+### Protection Methods
+- Firestore transactions
+- Server-side validation
+- Atomic updates
+- Safe concurrent request handling
+
+This prevents race conditions and guarantees raid integrity under heavy load.
+
+---
+
+# Firebase Cost Optimization
+
+To reduce Firebase read costs, the project uses:
+
+- Query limits
+- Pagination
+- Lazy loading
+- Fetching latest messages only
+- Optimized realtime listeners
+- Reduced unnecessary document reads
+
+---
+
+# Project Structure
+
+```text
+lib/
+ ├── features/
+ │    ├── boss/
+ │    ├── raid/
+ │    ├── chat/
+ │
+ ├── main.dart
+```
+
+---
+
+# Getting Started
+
+## Install Dependencies
+
+```bash
+flutter pub get
+```
+
+## Run The Application
+
+```bash
+flutter run
+```
+
+## Run Tests
+
+```bash
+flutter test
+```
+
+---
+
+# Notes
+
+- Includes concurrency testing for raid validation
+- Built for scalability and realtime responsiveness
+- Follows production-style architecture principles
